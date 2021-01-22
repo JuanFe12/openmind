@@ -1,4 +1,11 @@
 {
+      
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "asdqwe123",
+    "database": "openmind",
     "synchronize": true,
     "logging": false,
     "entities": [

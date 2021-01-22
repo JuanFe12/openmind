@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 //import indexRoutes from '../routes/user.routes';
 import cors from 'cors';
 import { intializeDB } from './app/database';
+import 'reflect-metadata';
 intializeDB();
 // load the environment variables from the .env file
 dotenv.config({
@@ -21,10 +22,9 @@ export function run() {
   app.use(bodyParser.urlencoded({ extended: false }));
 
   //app.use(indexRoutes);
-
   app.get("/", function (_, res) {
     res.type("application/json").send("Server is running");
-  });
+  }); 
 
   return app.listen(port, function () {
     // Port is forwarded by docker to 80.

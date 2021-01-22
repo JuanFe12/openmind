@@ -12,4 +12,8 @@ export class User {
     email!: string;
   @Column()
     password!: string;
+  @Column()
+    isAteacher!: Boolean;
 }
+
+export default User;
