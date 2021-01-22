@@ -3,6 +3,8 @@ import express from 'express';
 import bodyParser from "body-parser";
 //import indexRoutes from '../routes/user.routes';
 import cors from 'cors';
+import { intializeDB } from './app/database';
+intializeDB();
 // load the environment variables from the .env file
 dotenv.config({
   path: '.env'
