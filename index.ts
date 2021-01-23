@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from "body-parser";
-//import indexRoutes from '../routes/user.routes';
+import indexRoutes from './app/routes/user.routes';
 import cors from 'cors';
 import { intializeDB } from './app/database';
 import 'reflect-metadata';
@@ -21,7 +21,7 @@ export function run() {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
 
-  //app.use(indexRoutes);
+  app.use(indexRoutes);
   app.get("/", function (_, res) {
     res.type("application/json").send("Server is running");
   }); 
