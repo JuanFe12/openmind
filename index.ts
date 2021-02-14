@@ -1,10 +1,13 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from "body-parser";
-import indexRoutes from './app/routes/user.routes';
 import cors from 'cors';
 import { intializeDB } from './app/database';
+import app from "./app";
 import 'reflect-metadata';
+import { useExpressServer } from "routing-controllers";
+ 
+
 intializeDB();
 // load the environment variables from the .env file
 dotenv.config({
@@ -14,15 +17,14 @@ dotenv.config({
 const port = process.env.APP_PORT || 4848;
 
 export function run() {
-  const app = express();
-  
+  let app = express();
+
   app.use(cors());
   app.use(express.json())
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
 
-  app.use(indexRoutes);
-  app.get("/", function (_, res) {
+  app.get("/", function (_:any, res:any) {
     res.type("application/json").send("Server is running");
   }); 
 

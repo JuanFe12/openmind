@@ -1,22 +1,39 @@
-import { InjectRepository } from "typeorm-typedi-extensions";
-import { UserService } from "../services/user.service";
-import { UserValidator } from "../validators/user.validator";
+import { UserRepository } from './../repositories/user.repositorie';
+import { UserServices } from './../services/user.service';
 
-export class UserController {
-  constructor(@InjectRepository() private userService: UserService) {}
+import "reflect-metadata";
 
-   userCreate(userInput: UserValidator) {
-      const user = this.userService.createUser(userInput);
-      return user;
-   }
 
-   userUpdate(id: string, user: any) {
-      const updatedUser = this.userService.updateUser(id, user);
-      return updatedUser;
+//presentation
+export class UserController{
+
+  async userCreate(req:any){
+    const {firstName, lastName, isAteacher,email, password, repeatPassword} = req.body
+    const user = new UserServices().SingUp(firstName, lastName, isAteacher,email, password, repeatPassword)
+    return{
+      statusCode:200,
+      message: 'The password is wrong',
+      body: user
     }
+  }
 
-    userDelete(id: string) {
-      const deletedUser = this.userService.deleteUser(id);
-      return deletedUser;
+  async userDelete(req:any){
+    const {id} = req.body
+    const user = new UserServices().deleteUser(id)
+    return{
+      statusCode: 200,
+      message: 'user has been successfully removed',
+      body: user
     }
-}
+  }
+
+  async userUpdate(req:any){
+    const {firstName, lastName,email, password} = req.body
+    const user = new UserServices().updateUser(firstName, lastName,email, password)
+    return{
+      statusCode:200,
+      message: 'user has been successfully update',
+      body: user
+    }
+  }
+} 
