@@ -22,3 +22,5 @@ export class UserServices{
   }
 }
 
+
+export default UserServices

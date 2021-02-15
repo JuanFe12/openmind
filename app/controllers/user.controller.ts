@@ -1,13 +1,7 @@
-import { UserRepository } from './../repositories/user.repositorie';
 import { UserServices } from './../services/user.service';
-
-import "reflect-metadata";
-
-
-//presentation
 export class UserController{
 
-  async userCreate(req:any){
+  async userCreate(req:any, res: any){
     const {firstName, lastName, isAteacher,email, password, repeatPassword} = req.body
     const user = new UserServices().SingUp(firstName, lastName, isAteacher,email, password, repeatPassword)
     return{
@@ -37,3 +31,5 @@ export class UserController{
     }
   }
 } 
+
+export default UserController;

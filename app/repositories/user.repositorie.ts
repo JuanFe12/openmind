@@ -22,3 +22,6 @@ import { Repository } from "typeorm";
     }
 
  }
+
+
+ export default UserRepository

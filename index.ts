@@ -3,12 +3,9 @@ import express from 'express';
 import bodyParser from "body-parser";
 import cors from 'cors';
 import { intializeDB } from './app/database';
-import app from "./app";
 import 'reflect-metadata';
-import { useExpressServer } from "routing-controllers";
  
 
-intializeDB();
 // load the environment variables from the .env file
 dotenv.config({
   path: '.env'
@@ -17,6 +14,7 @@ dotenv.config({
 const port = process.env.APP_PORT || 4848;
 
 export function run() {
+
   let app = express();
 
   app.use(cors());
@@ -25,6 +23,7 @@ export function run() {
   app.use(bodyParser.urlencoded({ extended: false }));
 
   app.get("/", function (_:any, res:any) {
+    intializeDB();
     res.type("application/json").send("Server is running");
   }); 
 
